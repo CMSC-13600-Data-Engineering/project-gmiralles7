@@ -27,3 +27,7 @@ class Enrollment(models.Model):
 class Attendance(models.Model):
     QR=models.ForeignKey(Lecture, on_delete=models.CASCADE)
     student=models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    
+
+
