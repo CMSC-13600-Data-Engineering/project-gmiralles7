@@ -1,13 +1,49 @@
-<!-- templates/home.html -->
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
-{% endif %}
-{% endblock %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.7px 'Times New Roman'; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.7px 'Times New Roman'; -webkit-text-stroke: #000000; min-height: 17.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!-- templates/app/index.html --&gt;</span></p>
+<p class="p1"><span class="s1">{% extends 'base.html' %}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">{% block title %}Home{% endblock %}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">{% block content %}</span></p>
+<p class="p1"><span class="s1">  &lt;h2&gt;Cool Project&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">  &lt;h1 class = "container text-center"&gt; Welcome to AttendanceChimp!&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;p&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class = "container text-center"&gt; Web Creators:&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div&gt; &lt;b&gt; Giselle:&lt;/b&gt; Fourth year at the college, majoring in Physics and Data Science &lt;div&gt;</span></p>
+<p class="p1"><span class="s1">          &lt;div&gt; &lt;b&gt;Gabriel:&lt;/b&gt; Fourth year at the college, majoring in Econ and minoring in Data Science and Portuguese&lt;div&gt;</span></p>
+<p class="p1"><span class="s1">          &lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;p&gt; &lt;div&gt; Chicago - Date &amp; Time: &lt;/div&gt;{{datetime}}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;br/&gt;</span></p>
+<p class="p1"><span class="s1">  {% if user.is_authenticated %}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;h4&gt;Hi {{ user.username }}!&lt;/h4&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'course_create' %}"&gt;Create a course&lt;/a&gt;&lt;br/&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'qr_create' %}"&gt;Create a new QR code&lt;/a&gt; &lt;br/&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'qr_upload' %}"&gt;Upload a QR code&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;p&gt;&lt;br/&gt;&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'logout' %}?next=/app/"&gt;Logout&lt;/a&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">  {% else %}</span></p>
+<p class="p1"><span class="s1">    &lt;h4&gt;You are not logged in&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'login' %}"&gt;Log In&lt;/a&gt; &lt;br/&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;a href="{% url 'new' %}"&gt;Sign Up&lt;/a&gt; &lt;!-- Change to use URL name for signup --&gt;</span></p>
+<p class="p1"><span class="s1">{% endif %}</span></p>
+<p class="p1"><span class="s1">{% endblock %}</span></p>
+</body>
+</html>
