@@ -150,6 +150,7 @@ class QRCodeUpload(models.Model):
     # time stamp on upload
     uploaded = models.DateTimeField(auto_now_add=True)
 
+
 # this is the functionality to process an upload
 def process_upload(course, student, image):
     upload = QRCodeUpload(course=course, student=student, image=image)

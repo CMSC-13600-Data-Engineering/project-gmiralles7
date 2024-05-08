@@ -1,32 +1,33 @@
-<!-- templates/app/index.html -->
+<!-- templates/home.html -->
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <h2>Cool Project</h2>
+	<h2>AttendanceChip Dashboard</h2>
 
-  <h1 class = "container text-center"> Welcome to AttendanceChimp!</h1>
-  <p>
-    <div class = "container text-center"> Web Creators:<div>
-      <div> <b> Giselle:</b> Fourth year at the college, majoring in Physics and Data Science <div>
-          <div> <b>Gabriel:</b> Fourth year at the college, majoring in Econ and minoring in Data Science and Portuguese<div>
-          </p>
-  <p> <div> Chicago - Date & Time: </div>{{datetime}}</p>
-  <br/>
-  {% if user.is_authenticated %}
+	<br/>
+	{% if user.is_authenticated %}
 
-    <h4>Hi {{ user.username }}!</h4>
+	  <h4>Hi {{ user.username }}!</h4>
 
-    <a href="{% url 'course_create' %}">Create a course</a><br/>
-    <a href="{% url 'qr_create' %}">Create a new QR code</a> <br/>
-    <a href="{% url 'qr_upload' %}">Upload a QR code</a>
-    <p><br/></p>
-    <a href="{% url 'logout' %}?next=/app/">Logout</a>
+	  <a href="http://localhost:8000/app/course_create">Create a course</a><br/>
+	  <a href="http://localhost:8000/app/qr_create">Create a new QR code</a> <br/>
+	  <a href="http://localhost:8000/app/qr_upload">Upload a QR code</a>
+	  <p><br/></p>
+	  
+	  <form method="post" action="{% url 'logout' %}">
+    		{% csrf_token %}
+      <button type="submit">logout</button>
+	  </form>
+	
+	{% else %}
 
-  {% else %}
-    <h4>You are not logged in</h4>
-    <a href="{% url 'login' %}">Log In</a> <br/>
-    <a href="{% url 'new' %}">Sign Up</a> <!-- Change to use URL name for signup -->
-{% endif %}
+	  <h4>You are not logged in</h4>
+	  <a href="{% url 'login' %}">Log In</a> <br/>
+	  <a href="http://localhost:8000/app/new">Sign Up</a>
+	
+	{% endif %}
+
+
 {% endblock %}
