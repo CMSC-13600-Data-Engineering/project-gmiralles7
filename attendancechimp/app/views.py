@@ -13,10 +13,11 @@ from PIL import Image
 # these are django imports
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login
 from django.core.exceptions import PermissionDenied
-
+from django.http import HttpResponseBadRequest
 # these are import from your model
 from .models import *
 
@@ -302,3 +303,20 @@ def qr_upload_submit(request):
 
     return render(request, 'app/index.html', {})
 
+
+def getUploads(request):
+    if request.method == 'GET':
+    
+        courseid = request.GET.get('course')
+
+        if courseid == None:
+            raise HttpResponseBadRequest("No Course Pararmeter")
+        else:
+           queried_courses = getUploadsForCourse(courseid)
+           return_vals = []
+           for upload in queried_courses:
+                return_vals.append({'username': upload.student.user.username, 'upload_time_as_string': str(upload.uploaded)})
+           return JsonResponse(return_vals, safe=False)
+    else:
+        raise HttpResponseBadRequest("Not GET Request")
+        

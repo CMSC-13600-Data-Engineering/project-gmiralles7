@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 
 # some stuff to get the QR code working easier
 from django.utils.crypto import get_random_string
-
+from django.db.models import Q
 
 class UniversityPerson(models.Model):
     """This model describes a university person, either a student
@@ -156,3 +156,26 @@ def process_upload(course, student, image):
     upload = QRCodeUpload(course=course, student=student, image=image)
     upload.save()
     return upload
+
+def getUploadsForCourse(id):
+    this_course = Course.objects.filter(auto_increment_id = id)[0]
+    uploads = QRCodeUpload.objects.filter(course = id)
+    right_time = uploads.filter(Q(uploaded__time__gte=this_course.class_start) & Q(uploaded__time__lte=this_course.class_end))
+ 
+    filtered_uploads = []
+    for upload in right_time:
+        if (
+            (this_course.m_class and upload.uploaded.weekday() == 0) or
+            (this_course.tu_class and upload.uploaded.weekday() == 1) or
+            (this_course.w_class and upload.uploaded.weekday() == 2) or
+            (this_course.th_class and upload.uploaded.weekday() == 3) or
+            (this_course.f_class and upload.uploaded.weekday() == 4)
+        ):
+            filtered_uploads.append(upload)
+    return filtered_uploads
+
+
+    
+
+
+    
